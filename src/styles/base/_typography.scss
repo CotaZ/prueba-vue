@@ -1,0 +1,18 @@
+@use 'variables' as vars;
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: vars.$spacer;
+  font-weight: vars.$font-weight-bold;
+  line-height: 1.2;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: vars.$spacer;
+}
+
+.text-primary { color: vars.$color-primary; }
+.text-secondary { color: vars.$color-secondary; }
+.text-success { color: vars.$color-success; }
+.text-danger { color: vars.$color-danger; }

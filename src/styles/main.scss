@@ -1,0 +1,19 @@
+@use 'base/variables' as *;
+@use 'base/reset' as *;
+@use 'base/typography' as *;
+
+/* Puedes agregar más imports si tienes más archivos de utilidades o componentes */
+
+:root {
+  --color-primary: #{$color-primary};
+  --color-secondary: #{$color-secondary};
+  --color-success: #{$color-success};
+  --color-danger: #{$color-danger};
+  --color-warning: #{$color-warning};
+  --color-info: #{$color-info};
+  --color-light: #{$color-light};
+  --color-dark: #{$color-dark};
+  --font-family-base: #{$font-family-base};
+  --font-size-base: #{$font-size-base};
+  --line-height-base: #{$line-height-base};
+}

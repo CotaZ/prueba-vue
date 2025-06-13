@@ -1,0 +1,29 @@
+.instrument-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: $color-dark-800;
+  border-radius: $border-radius;
+  overflow: hidden;
+
+  th {
+    background-color: $color-dark-700;
+    text-align: left;
+    padding: $spacer;
+    font-weight: 500;
+    color: $color-light-300;
+    text-transform: uppercase;
+  }
+
+  td {
+    padding: $spacer;
+    border-bottom: 1px solid $color-dark-600;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  tr:hover {
+    background-color: rgba($color-primary-rgb, 0.1);
+  }
+}
