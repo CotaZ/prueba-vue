@@ -1,83 +1,45 @@
 <template>
-  <tr
-    :class="{ selected: isSelected }"
-    @click="$emit('click', instrument)"
-  >
-    <td class="instrument-name">
-      <span class="symbol">{{ instrument.symbol }}</span>
-      <span class="name">{{ instrument.name }}</span>
-    </td>
-    <td class="last-price">{{ formatCurrency(instrument.lastPrice) }}</td>
-    <td :class="['variation', variationClass]">
-      {{ formatVariation(instrument.variation) }}
-    </td>
-    <td class="volume">{{ formatVolume(instrument.volume) }}</td>
+  <tr :class="{ selected: isSelected }" @click="handleSelect">
+    <td>{{ instrument.name }}</td>
+    <td>{{ formatCurrency(instrument.lastPrice) }}</td>
+    <td>{{ formatNumber(instrument.volume) }}</td>
+    <td :class="variationClass(instrument.variation)">{{ formatVariation(instrument.variation) }}</td>
+    <td>{{ formatVariation(instrument.var30d) }}</td>
+    <td>{{ formatVariation(instrument.varYTD) }}</td>
+    <td>{{ formatVariation(instrument.var12m) }}</td>
   </tr>
 </template>
 
 <script setup>
 import { computed } from 'vue'
-import { formatCurrency, formatVariation, formatVolume } from '@/utils/formatters'
+import { formatCurrency, formatVariation, formatNumber } from '@/utils/formatters'
 
 const props = defineProps({
-  instrument: {
-    type: Object,
-    required: true
-  },
-  isSelected: {
-    type: Boolean,
-    default: false
-  }
+  instrument: { type: Object, required: true },
+  isSelected: { type: Boolean, default: false }
 })
 
-const variationClass = computed(() => 
-  props.instrument.variation >= 0 ? 'positive' : 'negative'
-)
+const emit = defineEmits(['select'])
+
+function handleSelect() {
+  emit('select', props.instrument)
+}
+
+function variationClass(value) {
+  return value >= 0 ? 'positive' : 'negative'
+}
 </script>
 
 <style scoped>
-td {
-  padding: 1rem;
-  border-bottom: 1px solid var(--color-border);
-}
-
 .selected {
-  background-color: var(--color-background-table-row-selected) !important;
+  background: #31363b !important;
 }
-
-.instrument-name {
-  display: flex;
-  flex-direction: column;
-}
-
-.symbol {
-  font-weight: 600;
-  color: var(--color-text-primary);
-}
-
-.name {
-  font-size: 0.875rem;
-  color: var(--color-text-secondary);
-}
-
-.last-price {
-  font-weight: 500;
-}
-
-.variation {
-  font-weight: 500;
-}
-
 .positive {
-  color: var(--color-positive);
+  color: #10b981;
+  font-weight: 600;
 }
-
 .negative {
-  color: var(--color-negative);
-}
-
-.volume {
-  font-size: 0.875rem;
-  color: var(--color-text-secondary);
+  color: #ef4444;
+  font-weight: 600;
 }
 </style>
